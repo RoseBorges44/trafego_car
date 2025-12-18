@@ -1,0 +1,14 @@
+{
+  "video": "trafego.mp4",
+  "timestamp": "20251217_224537",
+  "processing_time_seconds": 653.4,
+  "statistics": {
+    "total_entrada": 0,
+    "total_saida": 0,
+    "total_geral": 0,
+    "por_cor": {},
+    "por_tipo": {},
+    "registros": 0
+  },
+  "color_distribution": {}
+}

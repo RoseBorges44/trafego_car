@@ -1,0 +1,60 @@
+{
+  "video": "highway.mp4",
+  "timestamp": "20251217_223417",
+  "processing_time_seconds": 56.26,
+  "statistics": {
+    "total_entrada": 36,
+    "total_saida": 35,
+    "total_geral": 71,
+    "por_cor": {
+      "cinza": {
+        "entrada": 6,
+        "saida": 11
+      },
+      "prata": {
+        "entrada": 16,
+        "saida": 10
+      },
+      "preto": {
+        "entrada": 3,
+        "saida": 11
+      },
+      "branco": {
+        "entrada": 7,
+        "saida": 0
+      },
+      "laranja": {
+        "entrada": 1,
+        "saida": 1
+      },
+      "vermelho": {
+        "entrada": 2,
+        "saida": 2
+      },
+      "azul": {
+        "entrada": 1,
+        "saida": 0
+      }
+    },
+    "por_tipo": {
+      "car": {
+        "entrada": 28,
+        "saida": 26
+      },
+      "truck": {
+        "entrada": 8,
+        "saida": 9
+      }
+    },
+    "registros": 71
+  },
+  "color_distribution": {
+    "cinza": 17,
+    "prata": 26,
+    "preto": 14,
+    "branco": 7,
+    "laranja": 2,
+    "vermelho": 4,
+    "azul": 1
+  }
+}

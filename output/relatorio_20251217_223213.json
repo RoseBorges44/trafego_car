@@ -1,0 +1,51 @@
+{
+  "video": "highway_mini.mp4",
+  "timestamp": "20251217_223213",
+  "processing_time_seconds": 12.73,
+  "statistics": {
+    "total_entrada": 9,
+    "total_saida": 5,
+    "total_geral": 14,
+    "por_cor": {
+      "prata": {
+        "entrada": 4,
+        "saida": 2
+      },
+      "branco": {
+        "entrada": 3,
+        "saida": 0
+      },
+      "preto": {
+        "entrada": 0,
+        "saida": 1
+      },
+      "vermelho": {
+        "entrada": 1,
+        "saida": 0
+      },
+      "cinza": {
+        "entrada": 0,
+        "saida": 2
+      },
+      "azul": {
+        "entrada": 1,
+        "saida": 0
+      }
+    },
+    "por_tipo": {
+      "car": {
+        "entrada": 9,
+        "saida": 5
+      }
+    },
+    "registros": 14
+  },
+  "color_distribution": {
+    "prata": 6,
+    "branco": 3,
+    "preto": 1,
+    "vermelho": 1,
+    "cinza": 2,
+    "azul": 1
+  }
+}
