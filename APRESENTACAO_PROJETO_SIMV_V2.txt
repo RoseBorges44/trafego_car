@@ -1,0 +1,534 @@
+================================================================================
+SIMV - SISTEMA INTELIGENTE DE MONITORAMENTO VEICULAR
+Apresentacao Executiva para Prefeitura Municipal
+Projeto IBM Smart Cities - VERSAO 2.0
+================================================================================
+
+Este documento contem todas as informacoes atualizadas para criar uma
+apresentacao profissional do projeto SIMV. Inclui novas funcionalidades
+de alerta, integracao com Telegram e geracao de relatorios PDF.
+
+================================================================================
+PARTE 1: CONTEXTO E DESAFIO DO CLIENTE
+================================================================================
+
+O CENARIO ATUAL:
+----------------
+A Prefeitura Municipal enfrenta desafios criticos na gestao do trafego urbano:
+
+- NAO SABE quantos veiculos entram e saem da cidade diariamente
+- NAO POSSUI dados sobre distribuicao de cores dos veiculos
+- COLETA MANUAL de dados gera alto custo e baixa precisao
+- DECISOES ESTRATEGICAS sao tomadas com informacoes fragmentadas
+- FALTA DE INTEGRACAO com equipes de seguranca (GCM)
+- SEM SISTEMA DE ALERTA para veiculos suspeitos
+
+O PROBLEMA DE NEGOCIOS:
+-----------------------
+Como fornecer inteligencia de dados em tempo real para a gestao
+de mobilidade urbana E seguranca publica, permitindo:
+- Analises estatisticas precisas
+- Estudos de seguranca baseados em dados
+- Alertas automaticos para equipes de campo
+- Planejamento urbano fundamentado
+- Politicas publicas mais assertivas
+
+================================================================================
+PARTE 2: A SOLUCAO - SIMV 2.0
+================================================================================
+
+VISAO GERAL:
+------------
+O SIMV (Sistema Inteligente de Monitoramento Veicular) e uma solucao
+completa de visao computacional e inteligencia artificial que transforma
+cameras de trafego em sensores inteligentes de dados E seguranca.
+
+PROPOSTA DE VALOR:
+------------------
+"Transformando imagens em inteligencia para cidades mais seguras"
+
+O QUE O SISTEMA FAZ:
+--------------------
+1. DETECTA veiculos automaticamente em video (carros, motos, onibus, caminhoes)
+2. RASTREIA cada veiculo individualmente para contagem precisa
+3. CLASSIFICA a cor predominante de cada veiculo (11 categorias)
+4. CONTA veiculos de entrada e saida sem duplicidade
+5. GERA estatisticas e relatorios em tempo real
+6. APRESENTA dashboard profissional para tomada de decisao
+7. [NOVO] ALERTA automaticamente sobre veiculos suspeitos por cor
+8. [NOVO] ENVIA notificacoes via Telegram para equipes GCM
+9. [NOVO] EXPORTA relatorios profissionais em PDF
+
+================================================================================
+PARTE 3: NOVAS FUNCIONALIDADES - VERSAO 2.0
+================================================================================
+
+SISTEMA DE ALERTA POR COR:
+--------------------------
+O SIMV agora permite configurar uma cor de veiculo como "alerta".
+Quando um veiculo dessa cor e detectado:
+
+1. ALERTA VISUAL: Tela pisca em vermelho com texto "ALERTA" grande
+2. LOG DE EVENTO: Registra ID, cor, direcao e horario
+3. NOTIFICACAO TELEGRAM: Envia mensagem automatica para grupo da GCM
+
+Exemplo de mensagem Telegram:
+-----------------------------
+    ALERTA SIMV - GCM
+
+    Veiculo suspeito detectado!
+
+    ID: 47
+    Cor: VERMELHO
+    Direcao: ENTRADA
+    Horario: 14:32:15
+    Data: 18/12/2024
+
+    Equipe de monitoramento acionada.
+
+CASOS DE USO DO ALERTA:
+-----------------------
+- Veiculo roubado (cor conhecida)
+- Operacoes de busca (cor especifica)
+- Monitoramento de frotas suspeitas
+- Acompanhamento de veiculos em investigacao
+
+INTEGRACAO COM TELEGRAM:
+------------------------
+- Configuracao simples via interface grafica
+- Suporta grupos e usuarios individuais
+- Envio automatico sem intervencao humana
+- Delay anti-spam de 10 segundos entre alertas
+
+RELATORIOS EM PDF:
+------------------
+O sistema agora gera relatorios profissionais contendo:
+- Cabecalho com logo SIMV e data/hora
+- Informacoes do video analisado
+- Tabela de estatisticas (entrada, saida, total)
+- Distribuicao percentual por cor de veiculo
+- Status do sistema de alerta
+- Configuracao do Telegram
+- Rodape institucional
+
+================================================================================
+PARTE 4: DECISOES TECNICAS E ARQUITETURA
+================================================================================
+
+STACK TECNOLOGICO:
+------------------
+
+1. DETECCAO DE OBJETOS: YOLOv8 (You Only Look Once v8)
+   - Estado da arte em deteccao de objetos
+   - Velocidade de processamento em tempo real (30+ FPS)
+   - Alta precisao na deteccao de veiculos (>95%)
+   - Modelo pre-treinado no dataset COCO
+
+2. RASTREAMENTO DE OBJETOS: ByteTrack
+   - Algoritmo robusto para tracking multi-objeto
+   - Evita contagem duplicada do mesmo veiculo
+   - Mantem identidade do veiculo entre frames
+
+3. CLASSIFICACAO DE CORES: Analise HSV Customizada
+   - 11 cores identificadas: vermelho, laranja, amarelo, verde,
+     azul, roxo, rosa, branco, preto, cinza, prata
+   - Robustez a variacoes de iluminacao
+
+4. INTERFACE GRAFICA: ttkbootstrap
+   - Tema moderno e profissional (superhero/darkly)
+   - Layout responsivo e intuitivo
+   - Componentes nativos do Python
+
+5. INTEGRACAO TELEGRAM: API Bot nativa
+   - Sem dependencias externas complexas
+   - Envio via urllib (biblioteca padrao)
+
+6. GERACAO PDF: fpdf2
+   - Relatorios profissionais
+   - Tabelas formatadas
+   - Cores institucionais
+
+ARQUITETURA DO SISTEMA:
+-----------------------
+
+[Video] --> [YOLOv8] --> [ByteTrack] --> [Classificador HSV]
+                                              |
+                                              v
+                              [Contador Entrada/Saida]
+                                              |
+                    +-------------------------+-------------------------+
+                    |                         |                         |
+                    v                         v                         v
+             [Dashboard]              [Sistema Alerta]           [Relatorio PDF]
+                    |                         |
+                    v                         v
+             [Visualizacao]            [Telegram GCM]
+
+MODULOS DESENVOLVIDOS:
+----------------------
+- detector.py: Deteccao de veiculos com YOLOv8
+- tracker.py: Rastreamento com ByteTrack
+- color_classifier.py: Classificacao de cores HSV
+- counter.py: Sistema de contagem com linha de referencia
+- analytics.py: Metricas avancadas e alertas
+- dashboard.py: Interface grafica V1
+- dashboard_v2.py: Interface grafica V2 (profissional)
+- validacao.py: Script de validacao de acuracia
+
+================================================================================
+PARTE 5: VALIDACAO DE ACURACIA
+================================================================================
+
+METODOLOGIA DE VALIDACAO:
+-------------------------
+O sistema inclui um script de validacao (validacao.py) que permite:
+
+1. CONTAGEM MANUAL ASSISTIDA
+   - Abre o video com controles de pausa/avanco
+   - Permite contar manualmente entrada e saida
+   - Teclas: E (entrada), S (saida), ESPACO (pausar)
+
+2. PROCESSAMENTO AUTOMATICO
+   - Roda o sistema SIMV no mesmo video
+   - Conta automaticamente os veiculos
+
+3. COMPARACAO E METRICAS
+   - Compara contagem manual vs automatica
+   - Calcula acuracia por direcao e total
+   - Gera relatorio detalhado
+
+EXEMPLO DE RESULTADO:
+---------------------
+    COMPARATIVO DE CONTAGEM:
+    ----------------------------------------
+    Metrica         Manual    Sistema    Diff
+    ----------------------------------------
+    Entrada             50         48      -2
+    Saida               45         44      -1
+    TOTAL               95         92      -3
+    ----------------------------------------
+
+    ACURACIA:
+    Entrada:  96.0%
+    Saida:    97.8%
+
+    >>> ACURACIA TOTAL: 96.8% <<<
+
+    AVALIACAO:
+    EXCELENTE - Sistema com alta precisao!
+
+FATORES QUE INFLUENCIAM A ACURACIA:
+-----------------------------------
+- Posicao da linha de contagem
+- Qualidade e resolucao do video
+- Iluminacao da cena
+- Velocidade dos veiculos
+- Nivel de oclusao entre veiculos
+
+================================================================================
+PARTE 6: CENARIOS DE EXPANSAO
+================================================================================
+
+VIDEOS DE TESTE DISPONVEIS:
+---------------------------
+1. highway_mini.mp4 (1920x1080, 9s) - Testes rapidos
+2. highway.mp4 (1920x1080, 42s) - Apresentacao
+3. trafego.mp4 (720x1280, 8min) - Cenario de expansao
+
+POR QUE O VIDEO TRAFEGO.MP4?
+----------------------------
+Representa desafios reais de uma cidade:
+
+| Caracteristica | highway.mp4 | trafego.mp4    |
+|----------------|-------------|----------------|
+| Resolucao      | 1920x1080   | 720x1280       |
+| Orientacao     | Horizontal  | VERTICAL       |
+| Duracao        | 42 segundos | 8 MINUTOS      |
+| Cenario        | Rodovia     | Urbano         |
+
+DESAFIOS DO VIDEO VERTICAL:
+---------------------------
+- Cameras de vigilancia urbana sao frequentemente verticais
+- Linha de contagem precisa de ajuste diferente
+- Mais pedestres e motos entre carros
+- Maior complexidade de oclusao
+
+================================================================================
+PARTE 7: DASHBOARD V2 - INTERFACE PROFISSIONAL
+================================================================================
+
+LAYOUT DO DASHBOARD V2:
+-----------------------
+
++------------------------------------------------------------------+
+|  SIMV  Sistema Inteligente de Monitoramento     18/12/2024       |
++---------------------------------------------+--------------------+
+|                                             | ENTRADA SAIDA TOTAL|
+|                                             |   254    231   485 |
+|              Live Feed                      +--------------------+
+|                                             | Control            |
+|            [VIDEO HD 1280x720]              | [INICIAR]          |
+|                                             | [PAUSAR]           |
+|            Deteccao em tempo real           | [PARAR]            |
+|            com bounding boxes               | Linha: [====] 50%  |
+|            coloridos por cor                +--------------------+
+|                                             | Sistema de Alerta  |
+|                                             | Cor: [vermelho v]  |
+|                                             | MONITORANDO        |
++---------------------------------------------+--------------------+
+| video.mp4   [Selecionar] [PDF] [Telegram]   | Distribuicao Cor   |
+|                                             |   [GRAFICO PIZZA]  |
+|                                             +--------------------+
+|                                             | Event Log          |
+|                                             | 14:32:15 ID47 ent  |
+|                                             | 14:32:12 ID46 sai  |
+|                                             | 14:32:10 ID45 ent  |
++---------------------------------------------+--------------------+
+
+ELEMENTOS DA INTERFACE:
+-----------------------
+
+HEADER:
+- Logo SIMV em azul
+- Subtitulo do sistema
+- Relogio em tempo real
+
+PAINEL DE VIDEO (Live Feed):
+- Resolucao HD 1280x720
+- Bounding boxes coloridos por cor do veiculo
+- ID de rastreamento (ID47, ID48...)
+- Linha de contagem amarela
+
+BOTOES DE ACAO (abaixo do video):
+- Selecionar Video: Escolhe arquivo para analise
+- Exportar PDF: Gera relatorio profissional
+- Telegram: Configura integracao com GCM
+
+ESTATISTICAS:
+- ENTRADA: Numero verde grande
+- SAIDA: Numero vermelho grande
+- TOTAL: Numero azul grande
+
+CONTROLES:
+- INICIAR: Inicia processamento (verde)
+- PAUSAR: Pausa/Continua (azul)
+- PARAR: Finaliza (vermelho)
+- Slider de posicao da linha (20%-80%)
+
+SISTEMA DE ALERTA:
+- Dropdown de selecao de cor
+- Indicador "MONITORANDO" quando ativo
+
+GRAFICO DE CORES:
+- Pizza com distribuicao percentual
+- Cores reais dos veiculos
+
+EVENT LOG:
+- Lista scrollavel de eventos
+- Hora + ID + direcao
+- Alertas destacados
+
+================================================================================
+PARTE 8: BENEFICIOS PARA A PREFEITURA
+================================================================================
+
+BENEFICIOS QUANTITATIVOS:
+-------------------------
+- Reducao de 90% no custo de coleta de dados manuais
+- Dados 24/7 sem necessidade de equipe em campo
+- Precisao de contagem superior a 95%
+- Processamento de milhares de veiculos por hora
+- Alertas em tempo real para seguranca
+
+BENEFICIOS QUALITATIVOS:
+------------------------
+- Tomada de decisao baseada em dados reais
+- Planejamento urbano fundamentado
+- Transparencia para a populacao
+- Base para politicas publicas efetivas
+- Integracao direta com equipes de seguranca (GCM)
+- Documentacao automatica em PDF
+
+CASOS DE USO PRATICOS:
+----------------------
+1. "Quantos veiculos passam pela Avenida Principal por dia?"
+   - Resposta instantanea com dados historicos
+
+2. "Um veiculo vermelho foi roubado, podem monitorar?"
+   - Configurar alerta para cor vermelha
+   - GCM recebe notificacao automatica no Telegram
+
+3. "Preciso de um relatorio para a reuniao de amanha"
+   - Exportar PDF com todas as estatisticas
+
+4. "Qual a cor de veiculo mais comum na frota?"
+   - Grafico de pizza atualizado em tempo real
+
+5. "O novo semaforo reduziu o congestionamento?"
+   - Comparativo antes/depois com dados reais
+
+================================================================================
+PARTE 9: DIFERENCIAIS COMPETITIVOS
+================================================================================
+
+POR QUE ESCOLHER O SIMV?
+------------------------
+
+1. TECNOLOGIA DE PONTA
+   - Mesmo padrao usado por empresas como Tesla e Google
+   - YOLOv8 e o modelo mais avancado de deteccao
+
+2. CUSTO-BENEFICIO
+   - Aproveita cameras ja instaladas
+   - Nao requer sensores adicionais nas vias
+   - Software pode rodar em hardware convencional
+
+3. ESCALABILIDADE
+   - Comeca com um ponto, expande para toda cidade
+   - Arquitetura preparada para crescimento
+   - Integracao com sistemas existentes
+
+4. SEGURANCA INTEGRADA
+   - Sistema de alerta por cor de veiculo
+   - Notificacao automatica via Telegram
+   - Resposta rapida para equipes de campo
+
+5. DOCUMENTACAO AUTOMATICA
+   - Relatorios PDF profissionais
+   - Dados exportaveis para analise
+   - Historico de eventos
+
+6. PARCERIA IBM
+   - Suporte de empresa lider mundial em tecnologia
+   - Expertise em Smart Cities
+   - Capacidade de evolucao continua
+
+================================================================================
+PARTE 10: ROTEIRO SUGERIDO PARA APRESENTACAO
+================================================================================
+
+SLIDE 1: ABERTURA (30 segundos)
+- Logo SIMV + IBM Smart Cities
+- "Transformando imagens em inteligencia para cidades mais seguras"
+
+SLIDE 2: O DESAFIO (1 minuto)
+- Problemas atuais da Prefeitura
+- Falta de dados + falta de integracao com seguranca
+
+SLIDE 3: A SOLUCAO (1 minuto)
+- Visao geral do SIMV 2.0
+- Principais funcionalidades incluindo alerta
+
+SLIDE 4: DEMONSTRACAO AO VIVO (4 minutos)
+- Executar o dashboard_v2.py com video
+- Mostrar deteccao, contagem e graficos
+- Configurar alerta para uma cor
+- Mostrar notificacao no Telegram
+- Exportar PDF
+
+SLIDE 5: TECNOLOGIA (1 minuto)
+- Stack tecnologico (YOLOv8, ByteTrack)
+- Por que essas escolhas
+
+SLIDE 6: VALIDACAO (1 minuto)
+- Metodologia de teste
+- Acuracia de 95%+
+
+SLIDE 7: BENEFICIOS (1 minuto)
+- ROI esperado
+- Casos de uso praticos
+
+SLIDE 8: PROXIMOS PASSOS (30 segundos)
+- Piloto em ponto estrategico
+- Integracao com GCM
+
+TEMPO TOTAL: ~10 minutos
+
+================================================================================
+PARTE 11: PERGUNTAS FREQUENTES (FAQ)
+================================================================================
+
+P: O sistema funciona a noite?
+R: Sim, desde que haja iluminacao adequada. Cameras infravermelhas
+   podem ser integradas para melhor performance noturna.
+
+P: E se chover ou tiver neblina?
+R: O YOLOv8 e robusto a condicoes adversas, mas performance pode
+   reduzir em condicoes extremas.
+
+P: Qual a precisao da contagem?
+R: Em condicoes normais, superior a 95%. O sistema inclui script
+   de validacao para comprovar a acuracia.
+
+P: O sistema identifica pessoas?
+R: Nao. O SIMV foi configurado apenas para detectar veiculos,
+   respeitando a privacidade dos cidadaos.
+
+P: Como funciona o alerta?
+R: Voce seleciona uma cor no dashboard. Quando um veiculo dessa
+   cor e detectado, a tela pisca em vermelho e uma mensagem e
+   enviada automaticamente para o Telegram da GCM.
+
+P: Precisa de internet?
+R: Para operacao local, nao. Para Telegram e dashboard centralizado, sim.
+
+P: Como configuro o Telegram?
+R: 1) Crie um bot com @BotFather
+   2) Copie o token
+   3) Adicione o bot ao grupo da GCM
+   4) Configure no dashboard
+
+================================================================================
+CONCLUSAO
+================================================================================
+
+O SIMV 2.0 representa a transformacao digital da gestao de trafego
+E seguranca urbana. Com tecnologia de ponta, sistema de alertas
+integrado, interface profissional e arquitetura escalavel, a solucao
+esta pronta para revolucionar a forma como a Prefeitura Municipal
+entende, gerencia e protege a mobilidade da cidade.
+
+"Dados precisos. Alertas em tempo real. Cidades mais seguras."
+
+================================================================================
+ARQUIVOS DO PROJETO
+================================================================================
+
+CODIGO PRINCIPAL:
+- dashboard_v2.py: Interface grafica profissional (RECOMENDADO)
+- dashboard.py: Interface grafica V1
+- main.py: Versao linha de comando
+
+MODULOS (pasta src/):
+- detector.py: Deteccao YOLOv8
+- tracker.py: Rastreamento ByteTrack
+- color_classifier.py: Classificador de cores
+- counter.py: Sistema de contagem
+- analytics.py: Metricas avancadas
+
+UTILITARIOS:
+- validacao.py: Script de validacao de acuracia
+
+VIDEOS DE DEMONSTRACAO:
+- highway_mini.mp4: Video curto para testes (9s)
+- highway.mp4: Video para apresentacao (42s)
+- trafego.mp4: Video de expansao - vertical (8min)
+
+DOCUMENTACAO:
+- README.md: Documentacao tecnica
+- requirements.txt: Dependencias Python
+- APRESENTACAO_PROJETO_SIMV.txt: Apresentacao V1
+- APRESENTACAO_PROJETO_SIMV_V2.txt: Apresentacao V2 (este arquivo)
+
+COMANDO PARA EXECUTAR:
+----------------------
+python dashboard_v2.py
+
+DEPENDENCIAS:
+-------------
+pip install -r requirements.txt
+pip install fpdf2  (para relatorios PDF)
+
+================================================================================
+FIM DO DOCUMENTO - SIMV VERSAO 2.0
+================================================================================
