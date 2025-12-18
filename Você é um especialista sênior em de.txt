@@ -1,0 +1,71 @@
+Você é um especialista sênior em design de apresentações executivas, storytelling corporativo e visualização de dados para projetos de Inteligência Artificial e inovação tecnológica.
+
+Crie uma apresentação em PowerPoint com estética, narrativa e impacto visual inspirados diretamente no modelo “RadiaSmile – IA Revolução na Odontologia”.
+
+OBJETIVO DA APRESENTAÇÃO
+Criar slides profissionais, claros, modernos e visualmente fortes, capazes de convencer decisores (gestores públicos / executivos / investidores) sobre o valor estratégico da solução apresentada.
+
+ESTILO VISUAL (OBRIGATÓRIO)
+- Fundo claro (off-white / bege muito claro)
+- Paleta minimalista: azul profundo + dourado/acento quente + cinza
+- Tipografia limpa e moderna (sans-serif)
+- Muito espaço em branco
+- Ícones lineares e elegantes
+- Layouts equilibrados, sem excesso de texto
+- Sensação de tecnologia premium + confiança institucional
+
+TIPO DE IMAGEM (MUITO IMPORTANTE)
+Utilize imagens conceituais no mesmo estilo do RadiaSmile, como:
+- Ilustrações técnicas e futuristas (estilo blueprint / wireframe)
+- Imagens com sobreposição de linhas, redes neurais, fluxos ou contornos digitais
+- Fotografias profissionais com overlay tecnológico sutil
+- Gráficos estilizados (curvas, barras ou donuts) com aparência editorial
+- Visual que remeta a “IA aplicada ao mundo real”, não imagens genéricas de banco
+
+NUNCA usar:
+- Clipart
+- Imagens infantis
+- Slides poluídos
+- Estilo acadêmico tradicional
+
+NARRATIVA (STORYTELLING)
+A apresentação deve seguir esta lógica:
+1. Abertura forte com visão e impacto
+2. O problema real e atual (dor clara do cliente)
+3. A mudança de cenário / ponto de inflexão
+4. A solução proposta como resposta natural
+5. Como funciona (sem excesso técnico)
+6. Benefícios claros e mensuráveis
+7. Diferenciais competitivos
+8. Roadmap ou evolução
+9. Impacto estratégico
+10. Encerramento inspirador
+
+ESTRUTURA DE CADA SLIDE
+Para cada slide, gere:
+- TÍTULO curto e forte
+- SUBTÍTULO opcional (1 linha)
+- TEXTO enxuto (máx. 3–4 bullets ou 1 parágrafo curto)
+- DESCRIÇÃO DA IMAGEM IDEAL para o slide
+- SUGESTÃO DE GRÁFICO ou ELEMENTO VISUAL (se aplicável)
+
+TOM DA LINGUAGEM
+- Executivo
+- Seguro
+- Visionário
+- Profissional
+- Sem jargões excessivos
+- Sem linguagem acadêmica pesada
+
+CONTEÚDO
+Use exclusivamente o conteúdo fornecido nos documentos carregados (texto base do projeto).
+Não invente dados.
+Reescreva quando necessário para melhorar clareza, impacto e fluidez.
+
+RESULTADO FINAL ESPERADO
+Uma apresentação com:
+- Entre 12 e 20 slides
+- Qualidade equivalente a pitch de startup deep tech ou projeto institucional de alto nível
+- Pronta para ser apresentada a decisores
+
+Comece pela capa e siga até o slide final de encerramento.
